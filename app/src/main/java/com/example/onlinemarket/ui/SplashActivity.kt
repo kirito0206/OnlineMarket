@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         splashViewModel =
-            ViewModelProviders.of(this).get(splashViewModel::class.java)
+            ViewModelProviders.of(this).get(SplashViewModel::class.java)
         splashBinding = ActivitySplashBinding.inflate(layoutInflater,null,false)
         splashBinding.data = splashViewModel
         splashBinding.lifecycleOwner = this
