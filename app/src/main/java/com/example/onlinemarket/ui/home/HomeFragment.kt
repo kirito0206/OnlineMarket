@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.onlinemarket.R
+import com.example.onlinemarket.adapter.BannerViewHolder
 import com.example.onlinemarket.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -25,6 +26,7 @@ class HomeFragment : Fragment() {
         homeBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
         homeBinding.data = homeViewModel
         homeBinding.lifecycleOwner = this
+        homeBinding.banner.setPages(homeViewModel.bannerPic.value as List<String>,{BannerViewHolder()})
         return homeBinding.root
     }
 }
