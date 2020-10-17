@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.onlinemarket.R
 import com.example.onlinemarket.model.bean.BannerResponse
 import com.example.onlinemarket.model.network.repository.MarketRepository
 import com.example.onlinemarket.utils.toast
@@ -15,19 +16,45 @@ import kotlinx.coroutines.withContext
 class HomeViewModel : ViewModel() {
 
     private val marketRepository by lazy { MarketRepository() }
+
+    val picList = MutableLiveData<ArrayList<Int>>().apply { value = arrayListOf() }
+    val nameList = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
+
     var bannerPic = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
     private val response = MutableLiveData<BannerResponse>().also { loadDatas() }
     var bannerType = MutableLiveData<Int>()
 
-
-
     fun loadDatas() {
+        initGridData()
         mimic()
         GlobalScope.launch(Dispatchers.Main) {
             //initBanners()
 
         }
         // Do an asynchronous operation to fetch users.
+    }
+
+    private fun initGridData() {
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        picList.value?.add(R.drawable.pic0)
+        nameList.value?.add("水果")
+        nameList.value?.add("蔬菜")
+        nameList.value?.add("肉禽蛋品")
+        nameList.value?.add("海鲜水产")
+        nameList.value?.add("粮油调味")
+        nameList.value?.add("熟食卤味")
+        nameList.value?.add("冰品面点")
+        nameList.value?.add("牛奶面包")
+        nameList.value?.add("酒水冲饮")
+        nameList.value?.add("休闲零食")
     }
 
     fun mimic(){

@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         homeBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
         homeBinding.data = homeViewModel
         homeBinding.lifecycleOwner = this
-        homeBinding.banner.setPages(homeViewModel.bannerPic.value as List<String>,{BannerViewHolder()})
+        homeBinding.banner.setPages(homeViewModel.bannerPic.value as List<String>) {BannerViewHolder()}
         return homeBinding.root
     }
 }
