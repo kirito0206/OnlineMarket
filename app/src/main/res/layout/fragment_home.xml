@@ -18,26 +18,57 @@
             android:orientation="vertical"
             tools:context=".ui.home.HomeFragment">
 
-            <com.zhouwei.mzbanner.MZBannerView
-                android:id="@+id/banner"
+        <com.zhouwei.mzbanner.MZBannerView
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            app:open_mz_mode="true"
+            app:canLoop="true"
+            app:indicatorAlign="center"
+            app:indicatorPaddingLeft="10dp" />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="6dp"
-                app:open_mz_mode="false"
-                app:canLoop="true"
-                app:indicatorAlign="center"
-                app:indicatorPaddingLeft="10dp" />
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/recommend_background">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="限时抢购"
+                        android:textSize="25sp"
+                        android:id="@+id/rec_tv"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:paddingStart="20dp"
+                        android:typeface="serif">
+                    </TextView>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rec_img"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:paddingRight="20dp">
+                    </ImageView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    productList="@{data.productList}"
+                    android:id="@+id/rec_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
 
-            <GridView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:numColumns="5"
-                android:stretchMode="columnWidth"
-                android:padding="16dp"
-                android:verticalSpacing="8dp"
-                picList="@{data.picList}"
-                nameList="@{data.nameList}"/>
-        </LinearLayout>
+    </LinearLayout>
     </ScrollView>
 </layout>

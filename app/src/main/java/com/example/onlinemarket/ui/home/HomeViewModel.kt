@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.onlinemarket.R
 import com.example.onlinemarket.model.bean.BannerResponse
+import com.example.onlinemarket.model.bean.Product
 import com.example.onlinemarket.model.network.repository.MarketRepository
 import com.example.onlinemarket.utils.toast
 import kotlinx.coroutines.Dispatchers
@@ -19,19 +20,31 @@ class HomeViewModel : ViewModel() {
 
     val picList = MutableLiveData<ArrayList<Int>>().apply { value = arrayListOf() }
     val nameList = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
-
+    val productList = MutableLiveData<ArrayList<Product>>().apply { value = arrayListOf() }
     var bannerPic = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
     private val response = MutableLiveData<BannerResponse>().also { loadDatas() }
     var bannerType = MutableLiveData<Int>()
 
     fun loadDatas() {
         initGridData()
+        initRecyclerData()
         mimic()
         GlobalScope.launch(Dispatchers.Main) {
             //initBanners()
 
         }
         // Do an asynchronous operation to fetch users.
+    }
+
+    private fun initRecyclerData(){
+        val p = Product(1,"cheap!","grape","https://tu1.whhost.net/uploads/20180204/22/1517756051-LHXmAdKRFo.jpg",5.98)
+        productList.value?.add(p)
+        productList.value?.add(p)
+        productList.value?.add(p)
+        productList.value?.add(p)
+        productList.value?.add(p)
+        productList.value?.add(p)
+        productList.value?.add(p)
     }
 
     private fun initGridData() {
