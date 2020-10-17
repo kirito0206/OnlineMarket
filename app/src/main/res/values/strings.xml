@@ -4,4 +4,6 @@
     <string name="title_classify">分类</string>
     <string name="title_cart">购物车</string>
     <string name="title_user">我的</string>
+    <string name="user_menu_message">消息</string>
+    <string name="user_menu_settings">设置 </string>
 </resources>
