@@ -9,7 +9,7 @@ interface UserService {
 
     @FormUrlEncoded
     @POST("login")
-    suspend fun login(@Field("name") name : String, @Field("password") password : String) : CommonResponse
+    suspend fun login(@Field("username") name : String, @Field("password") password : String) : CommonResponse
 
     @FormUrlEncoded
     @POST("logout")

@@ -8,11 +8,16 @@
             type="com.example.onlinemarket.ui.cart.CartViewModel" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.cart.CartFragment">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="274dp"
+            android:background="@drawable/user_background"
+            tools:ignore="MissingConstraints" />
 
 
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -19,10 +19,8 @@
             android:id="@+id/background_user"
             android:layout_width="wrap_content"
             android:layout_height="274dp"
-            android:src="@drawable/user_background"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp" />
+            android:background="@drawable/user_background"
+            tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_user"
@@ -50,16 +48,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="username"
-                username="@{data.username}"
+                android:text="@{data.userName}"
                 android:textSize="40sp"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/background"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -68,22 +66,25 @@
             app:layout_constraintVertical_bias="0.35"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="购物车"
-                android:textSize="25sp"
                 android:layout_weight="1"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:text="购物车"
+                android:textSize="25sp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/ic_media_next"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/background"
@@ -96,13 +97,16 @@
             tools:layout_editor_absoluteX="-13dp">
 
             <Button
+                android:id="@+id/test"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/background"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"

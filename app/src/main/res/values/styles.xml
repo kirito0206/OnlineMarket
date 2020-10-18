@@ -18,6 +18,11 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item><!--状态栏API低于21-->
+        <item name="android:colorAccent">@color/colorAccent</item><!--强调色-->
+        <item name="android:colorPrimary">@color/colorPrimaryDark</item><!--actionbar颜色-->
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item><!--高于AI21状态栏颜色-->
+        <item name="android:actionMenuTextColor">@color/colorPrimary</item><!--标题颜色和菜单颜色都会被设置-->
 
     </style>
 

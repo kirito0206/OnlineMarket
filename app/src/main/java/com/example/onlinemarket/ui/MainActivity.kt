@@ -1,10 +1,13 @@
 package com.example.onlinemarket.ui
 
+import android.app.StatusBarManager
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.provider.VoicemailContract
+import android.service.notification.StatusBarNotification
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -36,39 +39,42 @@ class MainActivity : AppCompatActivity() {
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        setStatusBar(window,false)
+        //setStatusBar(window,false)
+        steepStatusBar()
+
     }
 
-    //解决状态栏灰色遮罩
-    //isLight参数，如果为true，就将状态栏的图标和文本设置成黑色。为false, 就变成白色。
-    fun setStatusBar(window: Window, isLight: Boolean) {
+    fun steepStatusBar() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (isLight) {
-                window.clearFlags(
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                                or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
-                )
 
-                window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-            } else {
-                window.clearFlags(
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                                or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
-                                or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                )
-                window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        var release=android.os.Build.MODEL
+        if (release!=null){
+            if (release.contains("HUAWEI")){
+                var  window = window
+                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             }
 
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = Color.TRANSPARENT
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = Color.BLACK
         }
 
-        var height = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
+                var  window = window
+                var  decorView = window.decorView
+                //两个 flag 要结合使用，表示让应用的主体内容占用系统状态栏的空间
+                var option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                decorView.systemUiVisibility = option
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                window.statusBarColor = Color.TRANSPARENT
+            } else {
+                var  window = window
+                var attributes = window.attributes
+                var  flagTranslucentStatus = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                var  flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+                attributes.flags = flagTranslucentStatus
+                attributes.flags = flagTranslucentNavigation
+                window.attributes = attributes
+            }
+        }
     }
 }
