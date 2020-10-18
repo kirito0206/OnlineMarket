@@ -39,7 +39,7 @@ object ImageLoaderUtils {
             .diskCacheFileNameGenerator(HashCodeFileNameGenerator())
             .imageDownloader(BaseImageDownloader(context)) // default
             .imageDecoder(BaseImageDecoder(true)) // default
-            .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
+            .defaultDisplayImageOptions(defautOption) // default
             .writeDebugLogs() // 打印debug log
             .build() //开始构建
 

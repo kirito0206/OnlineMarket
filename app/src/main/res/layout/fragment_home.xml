@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="16dp"
-                app:open_mz_mode="true"
+                app:open_mz_mode="false"
                 app:canLoop="true"
                 app:indicatorAlign="center"
                 app:indicatorPaddingLeft="10dp"

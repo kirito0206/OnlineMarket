@@ -1,7 +1,5 @@
 package com.example.onlinemarket.utils
 
-import android.util.Log
-import android.view.View
 import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,12 +7,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.onlinemarket.adapter.BannerViewHolder
 import com.example.onlinemarket.adapter.GridViewAdapter
 import com.example.onlinemarket.adapter.RecommendAdapter
 import com.example.onlinemarket.model.bean.Product
 import com.nostra13.universalimageloader.core.ImageLoader
-import com.zhouwei.mzbanner.MZBannerView
 
 class DatabindingHelper {
 

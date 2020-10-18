@@ -10,6 +10,6 @@ data class BannerData(
 )
 
 data class BannerMessage(
-    val picture: List<String>,
+    val picture: ArrayList<String>,
     val type: Any
 )

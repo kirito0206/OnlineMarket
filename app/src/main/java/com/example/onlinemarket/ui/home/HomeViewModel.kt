@@ -1,6 +1,4 @@
 package com.example.onlinemarket.ui.home
-
-import android.content.res.TypedArray
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.onlinemarket.R
@@ -31,7 +29,6 @@ class HomeViewModel : ViewModel() {
         GlobalScope.launch(Dispatchers.Main) {
             initBanners()
         }
-        // Do an asynchronous operation to fetch users.
     }
 
     private fun initRecyclerData(){
@@ -76,8 +73,9 @@ class HomeViewModel : ViewModel() {
         debug(result.toString())
         if (result!!.status == 0){
             //bannerType = result
-            if (result.data.message.picture != null)
-                bannerPic.value = result.data.message.picture as ArrayList<String>
+            if (result.data.message.picture != null) {
+                bannerPic.value = response!!.value!!.data.message.picture
+            }
         }
     }
 }
