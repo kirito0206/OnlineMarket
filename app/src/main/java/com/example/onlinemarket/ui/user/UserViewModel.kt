@@ -10,5 +10,4 @@ class UserViewModel : ViewModel() {
     val menu = MutableLiveData<Int>().apply { value = R.menu.user_menu }
     val username = MutableLiveData<String>().apply { value = "asdfas" }
 
-
 }

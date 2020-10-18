@@ -1,15 +1,12 @@
 package com.example.onlinemarket.ui.home
 
-import android.app.Activity
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -34,7 +31,6 @@ class HomeFragment : Fragment() {
         homeBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
         homeBinding.data = homeViewModel
         homeBinding.lifecycleOwner = this
-        homeBinding.banner.setPages(homeViewModel.bannerPic.value as List<String>,{BannerViewHolder()})
         return homeBinding.root
     }
 
@@ -55,5 +51,15 @@ class HomeFragment : Fragment() {
         ),null,Shader.TileMode.REPEAT)
         rec_tv.paint.shader = textShader
         rec_tv.paint.isFakeBoldText = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        homeBinding.banner.pause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeBinding.banner.start()
     }
 }

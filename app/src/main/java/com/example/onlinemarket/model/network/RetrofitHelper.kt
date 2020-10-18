@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitHelper {
 
-    const val USER_URL = ""
+    const val USER_URL = "http://47.99.197.94/user/"
 
     val userService by lazy {
         val retrofit = Retrofit.Builder()
