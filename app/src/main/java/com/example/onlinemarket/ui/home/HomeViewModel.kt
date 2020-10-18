@@ -36,10 +36,11 @@ class HomeViewModel : ViewModel() {
         productList.value?.add(p)
         productList.value?.add(p)
         productList.value?.add(p)
-        productList.value?.add(p)
-        productList.value?.add(p)
-        productList.value?.add(p)
-        productList.value?.add(p)
+        val q = Product(1,"蛋挞","danta","https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3557750652,71235332&fm=26&gp=0.jpg",5.98)
+        productList.value?.add(q)
+        productList.value?.add(q)
+        productList.value?.add(q)
+        productList.value?.add(q)
     }
 
     private fun initGridData() {

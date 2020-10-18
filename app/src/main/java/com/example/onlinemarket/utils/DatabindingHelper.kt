@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.onlinemarket.adapter.ActionAdapter
 import com.example.onlinemarket.adapter.GridViewAdapter
 import com.example.onlinemarket.adapter.RecommendAdapter
 import com.example.onlinemarket.model.bean.Product
@@ -62,6 +64,19 @@ class DatabindingHelper {
                 return
             val layoutManager = LinearLayoutManager(recyclerView.context)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = ActionAdapter(productList as ArrayList<Product>)
+        }
+
+        @BindingAdapter("recommendList")
+        @JvmStatic
+        fun loadRecommendView(
+            recyclerView: RecyclerView,
+            productList: MutableList<Product>?
+        ) {
+            if (productList.isNullOrEmpty())
+                return
+            val layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = RecommendAdapter(productList as ArrayList<Product>)
         }

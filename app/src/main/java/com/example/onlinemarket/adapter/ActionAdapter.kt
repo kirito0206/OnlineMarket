@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onlinemarket.R
-import com.example.onlinemarket.databinding.ItemRecommendBinding
+import com.example.onlinemarket.databinding.ItemActionBinding
 import com.example.onlinemarket.model.bean.Product
 
-class RecommendAdapter(var lists: ArrayList<Product>) : RecyclerView.Adapter<RecommendAdapter.ViewHolder>() {
+class ActionAdapter(var lists: ArrayList<Product>) : RecyclerView.Adapter<ActionAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val mBinding : ItemRecommendBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.item_recommend,
-                parent,
-                false)
+        val mBinding : ItemActionBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.item_action,
+            parent,
+            false)
         return ViewHolder(mBinding)
     }
 
@@ -27,7 +27,7 @@ class RecommendAdapter(var lists: ArrayList<Product>) : RecyclerView.Adapter<Rec
         holder.bind(lists[position])
     }
 
-    class ViewHolder(private val mBinding : ItemRecommendBinding) : RecyclerView.ViewHolder(mBinding.root){
+    class ViewHolder(private val mBinding : ItemActionBinding) : RecyclerView.ViewHolder(mBinding.root){
 
         fun bind(product : Product){
             mBinding.data = product
