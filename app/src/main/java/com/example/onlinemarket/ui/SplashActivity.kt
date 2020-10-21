@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.onlinemarket.R
 import com.example.onlinemarket.viewmodel.SplashViewModel
+import org.litepal.LitePal
 import java.lang.Thread.sleep
 
 
@@ -13,6 +14,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        LitePal.getDatabase()
         var splashViewModel =
             ViewModelProviders.of(this).get(SplashViewModel::class.java)
         Thread(Runnable {
