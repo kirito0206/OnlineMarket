@@ -2,10 +2,13 @@ package com.example.onlinemarket.ui.user
 
 import android.app.Activity
 import android.content.Context
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.onlinemarket.R
+import com.example.onlinemarket.generated.callback.OnClickListener
 import com.example.onlinemarket.model.bean.CommonResponse
 import com.example.onlinemarket.model.network.repository.UserRepository
 import com.example.onlinemarket.utils.SPUtils
@@ -24,6 +27,7 @@ class UserViewModel() : ViewModel(){
     val userName = MutableLiveData<String>().apply { if (SPUtils.account.toString() != "")value = SPUtils.account.toString() }
     val passWord = MutableLiveData<String>()
     private val repository by lazy { UserRepository() }
+
 
     fun loadDatas(view: View){
         GlobalScope.launch(Dispatchers.Main) {
@@ -51,7 +55,10 @@ class UserViewModel() : ViewModel(){
             SPUtils.password = passWord.value.toString()
             SPUtils.token = result.data.token
             toast(context,"登陆成功！！")
+            (context as Activity).finish()
         }
-        (context as Activity).finish()
+        else{
+            toast(context,"密码错误")
+        }
     }
 }

@@ -1,19 +1,26 @@
 package com.example.onlinemarket.utils
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.view.View
 import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.onlinemarket.R
 import com.example.onlinemarket.adapter.ActionAdapter
 import com.example.onlinemarket.adapter.GridViewAdapter
 import com.example.onlinemarket.adapter.RecommendAdapter
 import com.example.onlinemarket.model.bean.Product
 import com.example.onlinemarket.ui.home.HomeViewModel
+import com.example.onlinemarket.ui.LoginActivity
 import com.nostra13.universalimageloader.core.ImageLoader
 
 class DatabindingHelper {
@@ -36,6 +43,18 @@ class DatabindingHelper {
         @JvmStatic
         fun toolbarMenu(toolbar: Toolbar, menu: Int) {
             toolbar.inflateMenu(menu)
+            //toolbar.setOnMenuItemClickListener()
+
+            toolbar.setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.logout ->{
+                        val intent= Intent(toolbar.context,LoginActivity::class.java)
+                        (toolbar.context as Activity).startActivity(intent)
+                        return@setOnMenuItemClickListener true
+                    }
+                    else ->{return@setOnMenuItemClickListener false}
+                }
+            }
         }
 
         @BindingAdapter("username")
