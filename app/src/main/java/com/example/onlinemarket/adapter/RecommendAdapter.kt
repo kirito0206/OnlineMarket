@@ -24,6 +24,7 @@ class RecommendAdapter(var lists: ArrayList<Product>) : RecyclerView.Adapter<Rec
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.bind(lists[position])
     }
 

@@ -20,4 +20,12 @@ public class DatabindingHelper1 {
             }
         });
     }
+
+    @BindingAdapter({"bannerType"})
+    public static void setBannerType(MZBannerView view,Integer bannerType) {
+        switch (bannerType){
+            case 0:view.setCanLoop(true);view.setIndicatorAlign(MZBannerView.IndicatorAlign.CENTER);break;
+            case 1:view.setCanLoop(false);view.setIndicatorAlign(MZBannerView.IndicatorAlign.RIGHT);break;
+        }
+    }
 }

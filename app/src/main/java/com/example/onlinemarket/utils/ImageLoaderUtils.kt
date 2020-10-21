@@ -52,9 +52,9 @@ object ImageLoaderUtils {
     ///是否考虑JPEG图像EXIF参数（旋转，翻转）
     val defautOption: DisplayImageOptions
         get() = DisplayImageOptions.Builder()
-            .showImageForEmptyUri(R.drawable.notice_image_bg)
-            .showImageOnFail(R.drawable.notice_image_bg)
-            .showImageOnLoading(R.drawable.notice_image_bg)
+            .showImageForEmptyUri(R.drawable.default_image)
+            .showImageOnFail(R.drawable.default_image)
+            .showImageOnLoading(R.drawable.default_image)
             .cacheInMemory(true)
             .cacheOnDisk(true)
             .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)

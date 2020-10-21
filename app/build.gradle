@@ -70,4 +70,10 @@ dependencies {
 
     //MZBannerView
     implementation 'com.github.pinguo-zhouwei:MZBannerView:v2.0.2'
+
+    //圆形图像
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //下拉刷新
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02"
 }

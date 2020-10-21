@@ -21,4 +21,8 @@ interface MarketService {
     @FormUrlEncoded
     @POST("activity/query")
     suspend fun getSingleAction(token : String , activityid : Int) : ActionDetailResponse
+
+    @FormUrlEncoded
+    @POST("product/recommend")
+    suspend fun getRecommendProducts(token: String) : RecommendResponse
 }

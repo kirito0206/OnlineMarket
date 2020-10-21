@@ -8,10 +8,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.onlinemarket.adapter.ActionAdapter
 import com.example.onlinemarket.adapter.GridViewAdapter
 import com.example.onlinemarket.adapter.RecommendAdapter
 import com.example.onlinemarket.model.bean.Product
+import com.example.onlinemarket.ui.home.HomeViewModel
 import com.nostra13.universalimageloader.core.ImageLoader
 
 class DatabindingHelper {
@@ -79,6 +81,18 @@ class DatabindingHelper {
             val layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = RecommendAdapter(productList as ArrayList<Product>)
+        }
+
+        @BindingAdapter("refreshData")
+        @JvmStatic
+        fun refresh(
+            view: SwipeRefreshLayout,
+            refreshData : HomeViewModel
+        ) {
+            view.setOnRefreshListener {
+                view.isRefreshing = false
+                refreshData.loadDatas()
+            }
         }
     }
 }

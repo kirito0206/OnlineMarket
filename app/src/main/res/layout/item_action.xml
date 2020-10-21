@@ -9,31 +9,43 @@
 
     <LinearLayout
         android:id="@+id/item_action_ll"
-        android:layout_width="80dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/background">
 
-        <ImageView
-            android:layout_width="match_parent"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="80dp"
             android:layout_height="80dp"
             android:id="@+id/item_action_iv"
+            android:layout_margin="16dp"
+            android:layout_gravity="center_vertical"
             imageUrl="@{data.picture}">
-        </ImageView>
+        </de.hdodenhof.circleimageview.CircleImageView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@{data.name}"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@{data.introduce}"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="16dp"
                 android:textSize="15sp"
                 android:textColor="#FB0000"
                 android:textStyle="bold"

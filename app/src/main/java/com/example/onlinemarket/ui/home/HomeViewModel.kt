@@ -5,6 +5,7 @@ import com.example.onlinemarket.R
 import com.example.onlinemarket.model.bean.BannerResponse
 import com.example.onlinemarket.model.bean.Product
 import com.example.onlinemarket.model.network.repository.MarketRepository
+import com.example.onlinemarket.utils.SPUtils
 import com.example.onlinemarket.utils.debug
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -16,31 +17,41 @@ class HomeViewModel : ViewModel() {
 
     private val marketRepository by lazy { MarketRepository() }
 
+    //GridView
     val picList = MutableLiveData<ArrayList<Int>>().apply { value = arrayListOf() }
     val nameList = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
+
+    //推荐商品
+    val recommendList = MutableLiveData<ArrayList<Product>>().apply { value = arrayListOf() }
+
+    //活动商品
     val productList = MutableLiveData<ArrayList<Product>>().apply { value = arrayListOf() }
+
+    //轮播图
     var bannerPic = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
+    var bannerType = MutableLiveData<Int>().apply { value = 0 }
     private val response = MutableLiveData<BannerResponse>().also { loadDatas() }
-    var bannerType = MutableLiveData<Int>()
 
     fun loadDatas() {
         initGridData()
-        initRecyclerData()
         GlobalScope.launch(Dispatchers.Main) {
             initBanners()
+            initRecyclerData()
+            //if (SPUtils.account.isNotEmpty())
+            //    initRecommend()
         }
     }
 
-    private fun initRecyclerData(){
-        val p = Product(1,"cheap!","grape","https://tu1.whhost.net/uploads/20180204/22/1517756051-LHXmAdKRFo.jpg",5.98)
-        productList.value?.add(p)
-        productList.value?.add(p)
-        productList.value?.add(p)
-        val q = Product(1,"蛋挞","danta","https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3557750652,71235332&fm=26&gp=0.jpg",5.98)
-        productList.value?.add(q)
-        productList.value?.add(q)
-        productList.value?.add(q)
-        productList.value?.add(q)
+    private suspend fun initRecyclerData(){
+        val result = withContext(Dispatchers.IO){
+            marketRepository.getProducts()
+        }
+        debug(result.toString())
+        if (result!!.status == 0){
+            if (result.data.products != null) {
+                productList.value = result.data.products as ArrayList<Product>
+            }
+        }
     }
 
     private fun initGridData() {
@@ -73,9 +84,21 @@ class HomeViewModel : ViewModel() {
         response.value = result
         debug(result.toString())
         if (result!!.status == 0){
-            //bannerType = result
+            bannerType.value = result.data.message.type?:0
             if (result.data.message.picture != null) {
                 bannerPic.value = response!!.value!!.data.message.picture
+            }
+        }
+    }
+
+    private suspend fun initRecommend() {
+        val result = withContext(Dispatchers.IO){
+            marketRepository.getRecommendProducts(SPUtils.token)
+        }
+        debug(result.toString())
+        if (result!!.status == 0){
+            if (result.data.message != null) {
+                recommendList.value = result.data.message as ArrayList<Product>
             }
         }
     }

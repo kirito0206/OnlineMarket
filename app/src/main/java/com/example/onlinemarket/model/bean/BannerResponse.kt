@@ -11,5 +11,5 @@ data class BannerData(
 
 data class BannerMessage(
     val picture: ArrayList<String>,
-    val type: Any
+    val type: Int?
 )

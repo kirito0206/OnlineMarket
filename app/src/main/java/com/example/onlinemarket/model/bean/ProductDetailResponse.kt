@@ -12,8 +12,10 @@ data class SingleProductData(
 
 data class Product(
     val id: Int,
+    val tagid : Int,
     val introduce: String,
     val name: String,
     val picture: String,
-    val price: Double
+    val price: Double,
+    val discount : Double
 )

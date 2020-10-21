@@ -15,4 +15,6 @@ class MarketRepository {
     suspend fun getActions() = marketService.getActions()
 
     suspend fun getSingleAction(token : String , actionId : Int) = marketService.getSingleAction(token,actionId)
+
+    suspend fun getRecommendProducts(token: String) = marketService.getRecommendProducts(token)
 }

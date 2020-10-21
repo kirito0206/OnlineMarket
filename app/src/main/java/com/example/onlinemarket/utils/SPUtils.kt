@@ -3,6 +3,7 @@ package com.example.onlinemarket.utils
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.onlinemarket.MyApplication
+import com.example.onlinemarket.model.bean.Action
 
 object SPUtils {
 
@@ -10,17 +11,20 @@ object SPUtils {
     const val USER_ACCOUNT = "account"
     const val USER_TOKEN = "token"
     const val USER_PASSWORD = "password"
+    const val BANNER_TYPE = "bannerType"
+    const val BANNER_LIST = "bannerList"
+    const val ACTION_LIST = "actionList"
 
-    var account
-        get() = getData(MyApplication.instance().baseContext, USER_FILE, USER_ACCOUNT,"")
+    var account : String
+        get() = getData(MyApplication.instance().baseContext, USER_FILE, USER_ACCOUNT,"").toString()
         set(value) {
             if (value != null) {
                 putData(MyApplication.instance().baseContext, USER_FILE, USER_ACCOUNT,value)
             }
         }
 
-    var token
-        get() = getData(MyApplication.instance().baseContext, USER_FILE, USER_TOKEN,"")
+    var token : String
+        get() = getData(MyApplication.instance().baseContext, USER_FILE, USER_TOKEN,"") as String
         set(value) {
             if (value != null) {
                 putData(MyApplication.instance().baseContext, USER_FILE, USER_TOKEN,value)
@@ -32,6 +36,14 @@ object SPUtils {
         set(value) {
             if (value != null) {
                 putData(MyApplication.instance().baseContext, USER_FILE, USER_PASSWORD,value)
+            }
+        }
+
+    var bannerType : Int
+        get() = getData(MyApplication.instance().baseContext, USER_FILE, BANNER_TYPE,0).toString().toInt()
+        set(value){
+            if (value != null) {
+                putData(MyApplication.instance().baseContext, USER_FILE, BANNER_TYPE,value)
             }
         }
 
