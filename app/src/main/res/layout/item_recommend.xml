@@ -24,25 +24,24 @@
             imageUrl="@{data.picture}">
         </ImageView>
 
-        <LinearLayout
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.name}"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{data.introduce}"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="15sp"
-                android:textColor="#FB0000"
-                android:textStyle="bold"
-                android:text="@{String.valueOf('¥').concat(String.valueOf(data.price))}">
-            </TextView>
-
-        </LinearLayout>
+            android:text="@{data.introduce}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="#FB0000"
+            android:textStyle="bold"
+            android:text="@{String.valueOf('¥').concat(String.valueOf(data.price))}">
+        </TextView>
 
     </LinearLayout>
 </layout>

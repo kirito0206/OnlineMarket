@@ -1,7 +1,11 @@
 package com.example.onlinemarket.model.network.services
 
 import com.example.onlinemarket.model.bean.*
-import retrofit2.http.*
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.POST
+
 
 interface MarketService {
 
@@ -13,16 +17,16 @@ interface MarketService {
 
     @FormUrlEncoded
     @POST("product/query")
-    suspend fun getSingleProduct(token : String , productid : Int) : ProductDetailResponse
+    suspend fun getSingleProduct(@Field("token") token : String,@Field("productid") productid : Int) : ProductDetailResponse
 
     @GET("activity/getall")
     suspend fun getActions() : ActionResponse
 
     @FormUrlEncoded
     @POST("activity/query")
-    suspend fun getSingleAction(token : String , activityid : Int) : ActionDetailResponse
+    suspend fun getSingleAction(@Field("token") token : String ,@Field("activityid") activityid : Int) : ActionDetailResponse
 
     @FormUrlEncoded
     @POST("product/recommend")
-    suspend fun getRecommendProducts(token: String) : RecommendResponse
+    suspend fun getRecommendProducts(@Field("token") token: String) : RecommendResponse
 }

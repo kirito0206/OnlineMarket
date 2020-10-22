@@ -77,4 +77,7 @@ dependencies {
 
     //下拉刷新
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02"
+
+    //litepal
+    implementation 'org.litepal.android:kotlin:3.0.0'
 }

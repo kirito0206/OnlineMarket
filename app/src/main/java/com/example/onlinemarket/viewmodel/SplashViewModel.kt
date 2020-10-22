@@ -21,7 +21,7 @@ class SplashViewModel : ViewModel() {
     fun loadDatas() {
         GlobalScope.launch(Dispatchers.Main) {
             initActionsData()
-            initBanners()
+            //initBanners()
         }
     }
 

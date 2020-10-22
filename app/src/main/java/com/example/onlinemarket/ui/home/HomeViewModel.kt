@@ -2,6 +2,7 @@ package com.example.onlinemarket.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.onlinemarket.R
+import com.example.onlinemarket.model.bean.Action
 import com.example.onlinemarket.model.bean.BannerResponse
 import com.example.onlinemarket.model.bean.Product
 import com.example.onlinemarket.model.network.repository.MarketRepository
@@ -11,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.litepal.LitePal
 
 
 class HomeViewModel : ViewModel() {
@@ -29,27 +31,39 @@ class HomeViewModel : ViewModel() {
 
     //轮播图
     var bannerPic = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
-    var bannerType = MutableLiveData<Int>().apply { value = 0 }
+    var bannerType = MutableLiveData<Int>().apply { value = 1 }
     private val response = MutableLiveData<BannerResponse>().also { loadDatas() }
 
     fun loadDatas() {
         initGridData()
         GlobalScope.launch(Dispatchers.Main) {
             initBanners()
-            initRecyclerData()
-            //if (SPUtils.account.isNotEmpty())
-            //    initRecommend()
+
+            if (SPUtils.token.isNotEmpty()){
+                initRecyclerData()
+                initRecommend()
+            }
+
         }
     }
 
     private suspend fun initRecyclerData(){
-        val result = withContext(Dispatchers.IO){
-            marketRepository.getProducts()
+        var actionId = 0
+        var list = LitePal.findAll(Action::class.java)
+        for(t in list){
+            if(t.type == 0){
+                actionId = t.actionId
+                break
+            }
         }
-        debug(result.toString())
+        if(actionId == 0)
+            return
+        val result = withContext(Dispatchers.IO){
+            marketRepository.getSingleAction(SPUtils.token,actionId)
+        }
         if (result!!.status == 0){
-            if (result.data.products != null) {
-                productList.value = result.data.products as ArrayList<Product>
+            if (result.data.message.product != null) {
+                productList.value = result.data.message.product as ArrayList<Product>
             }
         }
     }
@@ -84,7 +98,7 @@ class HomeViewModel : ViewModel() {
         response.value = result
         debug(result.toString())
         if (result!!.status == 0){
-            bannerType.value = result.data.message.type?:0
+            bannerType.value = result.data.message.type?:1
             if (result.data.message.picture != null) {
                 bannerPic.value = response!!.value!!.data.message.picture
             }
