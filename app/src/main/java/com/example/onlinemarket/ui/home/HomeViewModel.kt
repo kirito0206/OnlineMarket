@@ -29,6 +29,9 @@ class HomeViewModel : ViewModel() {
     //活动商品
     val productList = MutableLiveData<ArrayList<Product>>().apply { value = arrayListOf() }
 
+    //中秋商品
+    val activityproductList = MutableLiveData<ArrayList<Product>>().apply { value = arrayListOf() }
+
     //轮播图
     var bannerPic = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
     var bannerType = MutableLiveData<Int>().apply { value = 1 }
@@ -41,6 +44,7 @@ class HomeViewModel : ViewModel() {
 
             if (SPUtils.token.isNotEmpty()){
                 initRecyclerData()
+                initActicityRecyclerData()
                 initRecommend()
             }
 
@@ -67,6 +71,28 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
+
+    private suspend fun initActicityRecyclerData(){
+        var actionId = 0
+        var list = LitePal.findAll(Action::class.java)
+        for(t in list){
+            if(t.type == 1){
+                actionId = t.actionId
+                break
+            }
+        }
+        if(actionId == 0)
+            return
+        val result = withContext(Dispatchers.IO){
+            marketRepository.getSingleAction(SPUtils.token,actionId)
+        }
+        if (result!!.status == 0){
+            if (result.data.message.product != null) {
+                activityproductList.value = result.data.message.product as ArrayList<Product>
+            }
+        }
+    }
+
 
     private fun initGridData() {
         picList.value?.add(R.drawable.pic0)
