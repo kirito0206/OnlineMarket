@@ -33,8 +33,9 @@ class SplashViewModel : ViewModel() {
             LitePal.deleteAll(Action::class.java)
             if (result.data.activities != null) {
                 for (element in result.data.activities) {
-                    var action = element
-                    action.save()
+                    if(element.type == 1){
+                        element.save()
+                    }
                 }
             }
         }

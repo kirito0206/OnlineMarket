@@ -15,17 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bumptech.glide.Glide
 import com.example.onlinemarket.R
 import com.example.onlinemarket.adapter.ActionAdapter
 import com.example.onlinemarket.adapter.GridViewAdapter
 import com.example.onlinemarket.adapter.RecommendAdapter
-import com.example.onlinemarket.model.bean.Action
 import com.example.onlinemarket.model.bean.Product
 import com.example.onlinemarket.ui.LoginActivity
 import com.example.onlinemarket.ui.home.HomeViewModel
-import com.google.android.material.appbar.AppBarLayout
 import com.nostra13.universalimageloader.core.ImageLoader
-import org.litepal.LitePal
 
 class DatabindingHelper {
 
@@ -75,16 +73,18 @@ class DatabindingHelper {
         @JvmStatic
         fun loadBActivityBackground(
                 view: LinearLayout,
-                int:Int
+                i:Int
         ) {
-            if (int == 0){//促销
-                view.setBackgroundResource(R.drawable.bg_nomal_bitmap)
-            }
-            else if(int == 1){//中秋
-                view.setBackgroundResource(R.drawable.bg_midautum_bitmap)
-            }
-            else if(int == 3){//圣诞
-                view.setBackgroundResource(R.drawable.bg_chrismas_bitmap)
+            when (i) {
+                0 -> {//促销
+                    view.setBackgroundResource(R.drawable.bg_nomal_bitmap)
+                }
+                1 -> {//中秋
+                    view.setBackgroundResource(R.drawable.bg_midautum_bitmap)
+                }
+                2 -> {//圣诞
+                    view.setBackgroundResource(R.drawable.bg_chrismas_bitmap)
+                }
             }
         }
 
@@ -141,28 +141,28 @@ class DatabindingHelper {
                 view.visibility = View.VISIBLE
         }
 
-        @BindingAdapter("BackGround")
+        @BindingAdapter("RecommendBg")
         @JvmStatic
-        fun setBackGround(
-                linear : LinearLayout,
+        fun setRecommendBg(
+                view : ImageView,
                 actionType : Int
         ){
             when(actionType) {
                 0 -> {
-                    linear.setBackgroundResource(R.drawable.recommend_background)
+
                 }
                 1 -> {
-                    linear.setBackgroundResource(R.drawable.midautumn_recommend)
+                    Glide.with(view.context).load(R.drawable.midautumn_recommend).into(view)
                 }
                 2 -> {
-                    linear.setBackgroundResource(R.drawable.chrismas_recommend)
+                    Glide.with(view.context).load(R.drawable.chrismas_recommend).into(view)
                 }
             }
         }
 
-        @BindingAdapter("TextColor")
+        @BindingAdapter("RecommendTextColor")
         @JvmStatic
-        fun setTextColor(
+        fun setRecommendTextColor(
                 tv : TextView,
                 actionType : Int
         ){
@@ -176,6 +176,38 @@ class DatabindingHelper {
             }
         }
 
+        @BindingAdapter("ActionTextBg")
+        @JvmStatic
+        fun setActionTextBg(
+            tv : TextView,
+            actionType : Int
+        ){
+            when(actionType) {
+                1 -> {
+                    tv.setBackgroundResource(R.drawable.bg_text_moon)
+                }
+                2->{
+                    tv.setBackgroundResource(R.drawable.bg_text_christmas)
+                }
+            }
+        }
+
+        @BindingAdapter("ActionTextColor")
+        @JvmStatic
+        fun setActionTextColor(
+            tv : TextView,
+            actionType : Int
+        ){
+            when(actionType) {
+                1 -> {
+                    tv.setTextColor(Color.parseColor("#B61F1D"))
+                }
+                2->{
+                    tv.setTextColor(Color.parseColor("#154C22"))
+                }
+            }
+        }
+
         @BindingAdapter("priceType")
         @JvmStatic
         fun setTextType(
@@ -185,6 +217,46 @@ class DatabindingHelper {
             if (flag) {
                 view.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
                 view.paint.isAntiAlias = true //抗锯齿
+            }
+        }
+
+        @BindingAdapter("activityBanner")
+        @JvmStatic
+        fun setActivityBanner(
+            view: ImageView,
+            actionType : Int
+        ) {
+            when (actionType) {
+                0 -> {
+                    view.visibility = View.GONE
+                }
+                1 -> {
+                    view.visibility = View.VISIBLE
+                    Glide.with(view.context).load(R.drawable.bg_moon_banner).into(view)
+                }
+                2 -> {
+                    view.visibility = View.VISIBLE
+                    Glide.with(view.context).load(R.drawable.bg_christmas).into(view)
+                }
+            }
+        }
+
+        @BindingAdapter("activityBg")
+        @JvmStatic
+        fun setActivityBg(
+            view: ImageView,
+            actionType : Int
+        ) {
+            when (actionType) {
+                0 -> {
+                    view.setBackgroundResource(R.drawable.bg_common)
+                }
+                1 -> {
+                    Glide.with(view.context).load(R.drawable.bg_moon).into(view)
+                }
+                2 -> {
+                    Glide.with(view.context).load(R.drawable.bg_christmas).into(view)
+                }
             }
         }
     }

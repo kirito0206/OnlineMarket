@@ -1,4 +1,5 @@
 package com.example.onlinemarket.ui.home
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.onlinemarket.R
@@ -24,11 +25,17 @@ HomeViewModel : ViewModel() {
     val picList = MutableLiveData<ArrayList<Int>>().apply { value = arrayListOf() }
     val nameList = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
 
+    //活动
+    val action = MutableLiveData<Action>().apply {
+        var list = LitePal.findAll(Action::class.java)
+        value = if(list.isNullOrEmpty()){
+            null
+        }else
+            list[0]
+    }
+
     //推荐商品
     val recommendList = MutableLiveData<ArrayList<Product>>().apply { value = arrayListOf() }
-
-    //活动商品
-    val productList = MutableLiveData<ArrayList<Product>>().apply { value = arrayListOf() }
 
     //中秋商品
     val activityproductList = MutableLiveData<ArrayList<Product>>().apply { value = arrayListOf() }
@@ -45,7 +52,7 @@ HomeViewModel : ViewModel() {
             initBanners()
 
             if (SPUtils.token.isNotEmpty()){
-                initRecyclerData()
+                //initRecyclerData()
                 initActicityRecyclerData()
                 initRecommend()
             }
@@ -53,7 +60,7 @@ HomeViewModel : ViewModel() {
         }
     }
 
-    private suspend fun initRecyclerData(){
+    /*private suspend fun initRecyclerData(){
         var actionId = 0
         var list = LitePal.findAll(Action::class.java)
         for(t in list){
@@ -72,21 +79,13 @@ HomeViewModel : ViewModel() {
                 productList.value = result.data.message.product as ArrayList<Product>
             }
         }
-    }
+    }*/
 
     private suspend fun initActicityRecyclerData(){
-        var actionId = 0
-        var list = LitePal.findAll(Action::class.java)
-        for(t in list){
-            if(t.type == 1){
-                actionId = t.actionId
-                break
-            }
-        }
-        if(actionId == 0)
+        if(action.value == null)
             return
         val result = withContext(Dispatchers.IO){
-            marketRepository.getSingleAction(SPUtils.token,actionId)
+            marketRepository.getSingleAction(SPUtils.token, action.value!!.actionId)
         }
         if (result!!.status == 0){
             if (result.data.message.product != null) {

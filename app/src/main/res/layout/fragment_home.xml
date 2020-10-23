@@ -27,8 +27,7 @@
                 <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    loadActivityBackground="@{0}"
-                    >
+                    loadActivityBackground="@{data.action.type}">
 
                     <EditText
                         android:layout_width="match_parent"
@@ -50,7 +49,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -59,8 +57,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="290dp"
-                        loadActivityBackground="@{0}"
+                        android:layout_height="320dp"
+                        loadActivityBackground="@{data.action.type}"
                         android:nestedScrollingEnabled="false"
                         android:orientation="vertical">
 
@@ -85,8 +83,8 @@
 
                     <GridView
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_margin="16dp"
+                        android:layout_height="148dp"
+                        android:layout_marginTop="16dp"
                         android:numColumns="5"
                         android:stretchMode="columnWidth"
                         android:verticalSpacing="8dp"
@@ -96,136 +94,142 @@
                     <LinearLayout
                         isVisiable="@{data.activityproductList}"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/recommend_background">
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="vertical">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="20dp">
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="中秋活动"
-                                android:textSize="25sp"
-                                android:id="@+id/rec_tv_activity"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                android:typeface="serif">
-                            </TextView>
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/activity_img"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                android:paddingRight="20dp">
-                            </ImageView>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/activity_rec"
-                            productList="@{data.activityproductList}"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:orientation="vertical">
-                        </androidx.recyclerview.widget.RecyclerView>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        isVisiable="@{data.productList}"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/recommend_background">
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="20dp">
+                                android:layout_marginLeft="16dp"
+                                android:text="活动"
+                                android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="限时抢购"
-                                android:textSize="25sp"
-                                android:id="@+id/rec_tv"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                android:typeface="serif">
-                            </TextView>
-                            <ImageView
+                                android:layout_marginLeft="8dp"
+                                android:paddingHorizontal="5dp"
+                                android:text="快讯"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                ActionTextBg="@{data.action.type}"/>
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/rec_img"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                android:paddingRight="20dp">
-                            </ImageView>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rec_rec"
-                            productList="@{data.productList}"
+                                android:layout_marginLeft="8dp"
+                                android:text="HOT"
+                                android:textColor="#B61F1D"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:text=""/>
+                        </LinearLayout>
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:orientation="vertical">
-                        </androidx.recyclerview.widget.RecyclerView>
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="12dp"
+                            activityBanner="@{data.action.type}"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                activityBg="@{data.action.type}"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="促销活动"
+                                        android:textSize="18sp"
+                                        android:layout_marginLeft="16dp"
+                                        android:textStyle="bold"
+                                        ActionTextColor="@{data.action.type}">
+                                    </TextView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="活动结束时间"
+                                        android:layout_marginLeft="32dp"
+                                        android:textStyle="bold">
+                                    </TextView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{data.action.time}"
+                                        android:layout_marginLeft="32dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"
+                                        android:paddingHorizontal="5dp"
+                                        ActionTextBg="@{data.action.type}">
+                                    </TextView>
+
+                                </LinearLayout>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    productList="@{data.activityproductList}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="120dp"
+                                    android:layout_marginHorizontal="16dp"
+                                    android:orientation="horizontal"/>
+                            </LinearLayout>
+                        </RelativeLayout>
                     </LinearLayout>
 
-
-                    <LinearLayout
-                        isVisiable="@{data.recommendList}"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_marginTop="8dp">
+                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="24dp"
-                            android:paddingBottom="5dp">
+                            RecommendBg="@{data.action.type}"/>
+                        <LinearLayout
+                            isVisiable="@{data.recommendList}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:orientation="vertical">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="24dp"
                                 android:text="推荐商品"
                                 android:textSize="28sp"
-                                TextColor="@{data.actionId}"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
+                                RecommendTextColor="@{data.actionId}"
+                                android:layout_gravity="center"
                                 android:typeface="sans">
                             </TextView>
-                            <ImageView
-                                android:layout_width="wrap_content"
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                recommendList="@{data.recommendList}"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                android:paddingRight="20dp">
-                            </ImageView>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                        <androidx.recyclerview.widget.RecyclerView
-                            recommendList="@{data.recommendList}"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp">
-                        </androidx.recyclerview.widget.RecyclerView>
-                    </LinearLayout>
+                                android:orientation="vertical"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginBottom="20dp">
+                            </androidx.recyclerview.widget.RecyclerView>
+                        </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
