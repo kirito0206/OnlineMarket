@@ -88,6 +88,24 @@ class DatabindingHelper {
             }
         }
 
+        @BindingAdapter("loadActivityIcon")
+        @JvmStatic
+        fun loadCActivityBackground(
+                view: ImageView,
+                i:Int
+        ) {
+            when (i) {
+                0 -> {//促销
+                    view.setBackgroundResource(R.drawable.bg_nomal_bitmap)
+                }
+                1 -> {//中秋
+                    view.setBackgroundResource(R.drawable.midautumicon)
+                }
+                2 -> {//圣诞
+                    view.setBackgroundResource(R.drawable.chrismasoldmanicon)
+                }
+            }
+        }
         @BindingAdapter("productList")
         @JvmStatic
         fun loadRecyclerView(
