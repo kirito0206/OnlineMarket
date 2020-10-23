@@ -23,6 +23,7 @@ import com.example.onlinemarket.model.bean.Action
 import com.example.onlinemarket.model.bean.Product
 import com.example.onlinemarket.ui.LoginActivity
 import com.example.onlinemarket.ui.home.HomeViewModel
+import com.google.android.material.appbar.AppBarLayout
 import com.nostra13.universalimageloader.core.ImageLoader
 import org.litepal.LitePal
 
@@ -68,6 +69,23 @@ class DatabindingHelper {
             if (picList.isNullOrEmpty() || nameList.isNullOrEmpty())
                 return
             gridView.adapter = GridViewAdapter(picList, nameList)
+        }
+
+        @BindingAdapter("loadActivityBackground")
+        @JvmStatic
+        fun loadBActivityBackground(
+                view: LinearLayout,
+                int:Int
+        ) {
+            if (int == 0){//促销
+                view.setBackgroundResource(R.drawable.bg_nomal_bitmap)
+            }
+            else if(int == 1){//中秋
+                view.setBackgroundResource(R.drawable.bg_midautum_bitmap)
+            }
+            else if(int == 3){//圣诞
+                view.setBackgroundResource(R.drawable.bg_chrismas_bitmap)
+            }
         }
 
         @BindingAdapter("productList")
@@ -137,7 +155,7 @@ class DatabindingHelper {
                     linear.setBackgroundResource(R.drawable.midautumn_recommend)
                 }
                 2 -> {
-                    linear.setBackgroundResource(R.drawable.chrismas_recommend_ls)
+                    linear.setBackgroundResource(R.drawable.chrismas_recommend)
                 }
             }
         }
