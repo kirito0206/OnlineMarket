@@ -30,29 +30,14 @@ class HomeFragment : Fragment() {
                 ViewModelProviders.of(this).get(HomeViewModel::class.java)
         homeBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
         homeBinding.data = homeViewModel
+        homeBinding.tvAction.isSelected = true
         homeBinding.lifecycleOwner = this
         return homeBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //rePaint(rec_tv)
-        //rePaint(rec_tv_activity)
     }
-
-    /*private fun rePaint(recTv: TextView) {
-        //val typeface = Typeface.createFromAsset((this as Activity).assets,"王汉宗颜楷体繁.ttf")
-        //rec_tv.setTypeface(typeface)
-        val paint = rec_tv.paint
-        val width = paint.measureText(rec_tv.text.toString())
-        val textShader : Shader = LinearGradient(0f,0f,width,rec_tv.textSize, intArrayOf(
-                Color.parseColor("#C66344"),
-                Color.parseColor("#F33D05"),
-                Color.parseColor("#87402B")
-        ),null,Shader.TileMode.REPEAT)
-        rec_tv.paint.shader = textShader
-        rec_tv.paint.isFakeBoldText = true
-    }*/
 
     override fun onPause() {
         super.onPause()

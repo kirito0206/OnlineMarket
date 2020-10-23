@@ -39,6 +39,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/tv_product_introduce"
                 android:layout_marginLeft="6dp"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:text="@{data.name}"/>
             <TextView
                 android:id="@+id/tv_product_introduce"

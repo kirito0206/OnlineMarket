@@ -19,6 +19,31 @@ import org.litepal.LitePal
 class
 HomeViewModel : ViewModel() {
 
+    private val gridPicList0 = arrayListOf(
+        R.drawable.pic0,
+        R.drawable.pic1,
+        R.drawable.pic2,
+        R.drawable.pic3,
+        R.drawable.pic4,
+        R.drawable.pic5,
+        R.drawable.pic6,
+        R.drawable.pic7,
+        R.drawable.pic8,
+        R.drawable.pic9)
+    private val gridPicList1 = arrayListOf(
+        R.drawable.pic00,
+        R.drawable.pic01,
+        R.drawable.pic02,
+        R.drawable.pic03,
+        R.drawable.pic04,
+        R.drawable.pic05,
+        R.drawable.pic06,
+        R.drawable.pic07,
+        R.drawable.pic08,
+        R.drawable.pic09)
+    val actionTitle0 = MutableLiveData<String>().apply { value = "在这美好的秋季与您相约，“花好月圆人团圆、盛隆送礼礼连礼”与您共度中秋、国庆佳节。感受秋天带来收获与成熟的风韵。" }
+    val actionTitle1 = MutableLiveData<String>().apply { value = "欢乐节日劲爆优惠大行动!海报换礼品，剪角来就送!开心圣诞节!狂购风暴，圣诞元旦先下手为强。"}
+
     private val marketRepository by lazy { MarketRepository() }
 
     //GridView
@@ -60,27 +85,6 @@ HomeViewModel : ViewModel() {
         }
     }
 
-    /*private suspend fun initRecyclerData(){
-        var actionId = 0
-        var list = LitePal.findAll(Action::class.java)
-        for(t in list){
-            if(t.type == 0){
-                actionId = t.actionId
-                break
-            }
-        }
-        if(actionId == 0)
-            return
-        val result = withContext(Dispatchers.IO){
-            marketRepository.getSingleAction(SPUtils.token,actionId)
-        }
-        if (result!!.status == 0){
-            if (result.data.message.product != null) {
-                productList.value = result.data.message.product as ArrayList<Product>
-            }
-        }
-    }*/
-
     private suspend fun initActicityRecyclerData(){
         if(action.value == null)
             return
@@ -96,16 +100,10 @@ HomeViewModel : ViewModel() {
 
 
     private fun initGridData() {
-        picList.value?.add(R.drawable.pic0)
-        picList.value?.add(R.drawable.pic1)
-        picList.value?.add(R.drawable.pic2)
-        picList.value?.add(R.drawable.pic3)
-        picList.value?.add(R.drawable.pic4)
-        picList.value?.add(R.drawable.pic5)
-        picList.value?.add(R.drawable.pic6)
-        picList.value?.add(R.drawable.pic7)
-        picList.value?.add(R.drawable.pic8)
-        picList.value?.add(R.drawable.pic9)
+        if (action.value?.type == 2)
+            picList.value = gridPicList1
+        else
+            picList.value = gridPicList0
         nameList.value?.add("水果")
         nameList.value?.add("蔬菜")
         nameList.value?.add("肉禽蛋品")

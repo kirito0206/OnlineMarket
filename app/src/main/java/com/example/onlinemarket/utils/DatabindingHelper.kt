@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -162,18 +163,18 @@ class DatabindingHelper {
         @BindingAdapter("RecommendBg")
         @JvmStatic
         fun setRecommendBg(
-                view : ImageView,
-                actionType : Int
+                view : ConstraintLayout,
+                actionType: Int
         ){
             when(actionType) {
                 0 -> {
 
                 }
                 1 -> {
-                    Glide.with(view.context).load(R.drawable.midautumn_recommend).into(view)
+                    view.setBackgroundResource(R.drawable.midautumn_recommend)
                 }
                 2 -> {
-                    Glide.with(view.context).load(R.drawable.chrismas_recommend).into(view)
+                    view.setBackgroundResource(R.drawable.chrismas_recommend)
                 }
             }
         }

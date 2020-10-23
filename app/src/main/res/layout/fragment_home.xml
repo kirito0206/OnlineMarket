@@ -139,10 +139,14 @@
                                 android:text="HOT"
                                 android:textColor="#B61F1D"/>
                             <TextView
+                                android:id="@+id/tv_action"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
-                                android:text=""/>
+                                android:singleLine="true"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:text="@{data.action.type == 1?data.actionTitle0:data.actionTitle1}"/>
                         </LinearLayout>
                         <ImageView
                             android:layout_width="match_parent"
@@ -209,20 +213,21 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <RelativeLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            RecommendBg="@{data.action.type}"/>
+                        android:layout_marginTop="8dp"
+                        RecommendBg="@{data.action.type}">
+
                         <LinearLayout
                             isVisiable="@{data.recommendList}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -243,7 +248,7 @@
                                 android:layout_marginBottom="20dp">
                             </androidx.recyclerview.widget.RecyclerView>
                         </LinearLayout>
-                    </RelativeLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
