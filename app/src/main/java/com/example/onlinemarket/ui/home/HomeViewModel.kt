@@ -15,7 +15,8 @@ import kotlinx.coroutines.withContext
 import org.litepal.LitePal
 
 
-class HomeViewModel : ViewModel() {
+class
+HomeViewModel : ViewModel() {
 
     private val marketRepository by lazy { MarketRepository() }
 
@@ -34,8 +35,9 @@ class HomeViewModel : ViewModel() {
 
     //轮播图
     var bannerPic = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
-    var bannerType = MutableLiveData<Int>().apply { value = 1 }
+    var bannerType = MutableLiveData<Int>().apply { value = 0 }
     private val response = MutableLiveData<BannerResponse>().also { loadDatas() }
+    var actionId = 1
 
     fun loadDatas() {
         initGridData()
@@ -124,7 +126,7 @@ class HomeViewModel : ViewModel() {
         response.value = result
         debug(result.toString())
         if (result!!.status == 0){
-            bannerType.value = result.data.message.type?:1
+            bannerType.value = result.data.message.type?:0
             if (result.data.message.picture != null) {
                 bannerPic.value = response!!.value!!.data.message.picture
             }

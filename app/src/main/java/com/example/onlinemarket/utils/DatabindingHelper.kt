@@ -2,10 +2,12 @@ package com.example.onlinemarket.utils
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
 import android.widget.GridView
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
@@ -17,10 +19,12 @@ import com.example.onlinemarket.R
 import com.example.onlinemarket.adapter.ActionAdapter
 import com.example.onlinemarket.adapter.GridViewAdapter
 import com.example.onlinemarket.adapter.RecommendAdapter
+import com.example.onlinemarket.model.bean.Action
 import com.example.onlinemarket.model.bean.Product
 import com.example.onlinemarket.ui.LoginActivity
 import com.example.onlinemarket.ui.home.HomeViewModel
 import com.nostra13.universalimageloader.core.ImageLoader
+import org.litepal.LitePal
 
 class DatabindingHelper {
 
@@ -90,7 +94,7 @@ class DatabindingHelper {
             if (productList.isNullOrEmpty())
                 return
 
-            val layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+            val layoutManager = StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = RecommendAdapter(productList as ArrayList<Product>)
         }
@@ -117,6 +121,41 @@ class DatabindingHelper {
                 view.visibility = View.GONE
             else
                 view.visibility = View.VISIBLE
+        }
+
+        @BindingAdapter("BackGround")
+        @JvmStatic
+        fun setBackGround(
+                linear : LinearLayout,
+                actionType : Int
+        ){
+            when(actionType) {
+                0 -> {
+                    linear.setBackgroundResource(R.drawable.recommend_background)
+                }
+                1 -> {
+                    linear.setBackgroundResource(R.drawable.midautumn_recommend)
+                }
+                2 -> {
+                    linear.setBackgroundResource(R.drawable.chrismas_recommend_ls)
+                }
+            }
+        }
+
+        @BindingAdapter("TextColor")
+        @JvmStatic
+        fun setTextColor(
+                tv : TextView,
+                actionType : Int
+        ){
+            when(actionType) {
+                0,2 ->{
+                    tv.setTextColor(Color.parseColor("#FFFFFF"))
+                }
+                1 -> {
+                    tv.setTextColor(Color.parseColor("#DA941F"))
+                }
+            }
         }
 
         @BindingAdapter("priceType")

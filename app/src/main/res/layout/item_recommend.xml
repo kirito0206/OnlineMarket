@@ -8,27 +8,32 @@
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
+        android:paddingBottom="5dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/background">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:id="@+id/item_action_iv"
-            imageUrl="@{data.picture}">
+            imageUrl="@{data.picture}"
+            android:layout_marginBottom="5dp">
         </ImageView>
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{data.name}"/>
+            android:text="@{data.name}"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
