@@ -16,8 +16,7 @@ import kotlinx.coroutines.withContext
 import org.litepal.LitePal
 
 
-class
-HomeViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val gridPicList0 = arrayListOf(
         R.drawable.pic0,
@@ -31,6 +30,17 @@ HomeViewModel : ViewModel() {
         R.drawable.pic8,
         R.drawable.pic9)
     private val gridPicList1 = arrayListOf(
+        R.drawable.pic000,
+        R.drawable.pic001,
+        R.drawable.pic002,
+        R.drawable.pic003,
+        R.drawable.pic004,
+        R.drawable.pic005,
+        R.drawable.pic006,
+        R.drawable.pic007,
+        R.drawable.pic008,
+        R.drawable.pic009)
+    private val gridPicList2 = arrayListOf(
         R.drawable.pic00,
         R.drawable.pic01,
         R.drawable.pic02,
@@ -69,15 +79,12 @@ HomeViewModel : ViewModel() {
     var bannerPic = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
     var bannerType = MutableLiveData<Int>().apply { value = 0 }
     private val response = MutableLiveData<BannerResponse>().also { loadDatas() }
-    var actionId = 1
 
     fun loadDatas() {
         initGridData()
         GlobalScope.launch(Dispatchers.Main) {
             initBanners()
-
             if (SPUtils.token.isNotEmpty()){
-                //initRecyclerData()
                 initActicityRecyclerData()
                 initRecommend()
             }
@@ -100,10 +107,11 @@ HomeViewModel : ViewModel() {
 
 
     private fun initGridData() {
-        if (action.value?.type == 2)
-            picList.value = gridPicList1
-        else
-            picList.value = gridPicList0
+        when (action.value?.type) {
+            0 -> picList.value = gridPicList0
+            1 -> picList.value = gridPicList1
+            2 -> picList.value = gridPicList2
+        }
         nameList.value?.add("水果")
         nameList.value?.add("蔬菜")
         nameList.value?.add("肉禽蛋品")
@@ -134,7 +142,6 @@ HomeViewModel : ViewModel() {
         val result = withContext(Dispatchers.IO){
             marketRepository.getRecommendProducts(SPUtils.token)
         }
-        debug(result.toString())
         if (result!!.status == 0){
             if (result.data.message != null) {
                 recommendList.value = result.data.message as ArrayList<Product>

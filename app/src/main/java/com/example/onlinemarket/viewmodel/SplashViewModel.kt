@@ -1,6 +1,5 @@
 package com.example.onlinemarket.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.onlinemarket.model.bean.Action
 import com.example.onlinemarket.model.network.repository.MarketRepository
@@ -11,8 +10,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.litepal.LitePal
-import org.litepal.crud.LitePalSupport
-import org.litepal.extension.deleteAll
 
 class SplashViewModel : ViewModel() {
 
@@ -33,7 +30,7 @@ class SplashViewModel : ViewModel() {
             LitePal.deleteAll(Action::class.java)
             if (result.data.activities != null) {
                 for (element in result.data.activities) {
-                    if(element.type == 1){
+                    if(element.type == 0){
                         element.save()
                     }
                 }

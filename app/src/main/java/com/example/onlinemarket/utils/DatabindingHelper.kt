@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -24,6 +26,7 @@ import com.example.onlinemarket.adapter.RecommendAdapter
 import com.example.onlinemarket.model.bean.Product
 import com.example.onlinemarket.ui.LoginActivity
 import com.example.onlinemarket.ui.home.HomeViewModel
+import com.example.onlinemarket.viewmodel.SplashViewModel
 import com.nostra13.universalimageloader.core.ImageLoader
 
 class DatabindingHelper {
@@ -168,7 +171,7 @@ class DatabindingHelper {
         ){
             when(actionType) {
                 0 -> {
-
+                    view.setBackgroundResource(R.drawable.bg_common)
                 }
                 1 -> {
                     view.setBackgroundResource(R.drawable.midautumn_recommend)
@@ -186,7 +189,10 @@ class DatabindingHelper {
                 actionType : Int
         ){
             when(actionType) {
-                0,2 ->{
+                0->{
+                    tv.setTextColor(Color.parseColor("#000000"))
+                }
+                2 ->{
                     tv.setTextColor(Color.parseColor("#FFFFFF"))
                 }
                 1 -> {
@@ -267,8 +273,8 @@ class DatabindingHelper {
             actionType : Int
         ) {
             when (actionType) {
-                0 -> {
-                    view.setBackgroundResource(R.drawable.bg_common)
+                0->{
+                    Glide.with(view.context).load(R.drawable.bg_nomal).into(view)
                 }
                 1 -> {
                     Glide.with(view.context).load(R.drawable.bg_moon).into(view)

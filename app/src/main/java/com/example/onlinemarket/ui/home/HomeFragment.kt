@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.onlinemarket.R
 import com.example.onlinemarket.databinding.FragmentHomeBinding
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment() {
@@ -33,10 +32,6 @@ class HomeFragment : Fragment() {
         homeBinding.tvAction.isSelected = true
         homeBinding.lifecycleOwner = this
         return homeBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onPause() {

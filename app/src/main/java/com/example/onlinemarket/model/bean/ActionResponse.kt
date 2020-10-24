@@ -18,6 +18,6 @@ data class Action (
     val actionId: Int,
     val name: String,
     val time: String,
-    val type: Int,
+    var type: Int,
     val isshow: Int
 ) : LitePalSupport()
